@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+#game {
+    margin: 50px auto;
+    width: 300px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#enemy-sprite {
+    margin: 20px auto;
+    width: 100px;
+    height: 100px;
+    background: url('enemy.png') no-repeat center;
+    background-size: contain;
+}
+
+/* battlefield layout */
+#battlefield{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    margin: 10px 0 20px 0;
+}
+.sprite-container{ text-align:center; }
+.sprite{ width:100px; height:100px; margin:0 auto; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:60px; }
+.sprite.player{ background: linear-gradient(135deg,#6bd36b,#2ea02e); background-image: url('hero.png'); background-size: contain; background-repeat: no-repeat; background-position: center; }
+.sprite.player::before{ content: ''; mix-blend-mode: multiply; }
+.sprite.enemy{ background: linear-gradient(135deg,#f19999,#e04848); background-image: url('enemy.png'); background-size: contain; background-repeat: no-repeat; background-position: center; }
+.sprite.enemy::before{ content: ''; mix-blend-mode: multiply; }
+.sprite-label{ margin-top:6px; font-size:14px; }
+
+/* animations */
+.attack-anim{ animation: attack 320ms ease forwards; }
+@keyframes attack{ 0%{ transform: translateX(0) scale(1); } 50%{ transform: translateX(30px) scale(1.05); } 100%{ transform: translateX(0) scale(1); } }
+
+.enemy-attack-anim{ animation: attack-enemy 320ms ease forwards; }
+@keyframes attack-enemy{ 0%{ transform: translateX(0) scale(1); } 50%{ transform: translateX(-30px) scale(1.05); } 100%{ transform: translateX(0) scale(1); } }
+
+.hit-flash{ animation: hitFlash 220ms ease 0s 2; }
+@keyframes hitFlash{ 0%{ box-shadow: 0 0 0 rgba(255,0,0,0); } 50%{ box-shadow: 0 0 18px rgba(255,0,0,0.8); } 100%{ box-shadow: 0 0 0 rgba(255,0,0,0); } }
+
+/* small shake for damage feedback */
+.shake{ animation: shake 220ms ease; }
+@keyframes shake{ 0%{ transform: translateX(0); } 25%{ transform: translateX(-6px); } 50%{ transform: translateX(6px); } 75%{ transform: translateX(-4px); } 100%{ transform: translateX(0); } }
+
+#controls{ margin-top:8px }
+#controls button{ display:inline-block }
+
+/* music controls */
+#music-controls{
+    background: #e8e8e8;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 14px;
+}
+#music-volume{
+    width: 120px;
+    cursor: pointer;
+}
+#music-file{
+    cursor: pointer;
+    font-size: 11px;
+}
